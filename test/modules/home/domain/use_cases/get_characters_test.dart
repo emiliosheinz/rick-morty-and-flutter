@@ -16,24 +16,23 @@ void main() {
     repository = MockCharacterRepository();
     useCase = GetCharacters(repository);
   });
-  group('GetCharacters', () {
-    test(
-      'should get the list of characters',
-      () async {
-        final characters = [
-          Character(id: 1, name: "Nome Teste", image: "image.png"),
-          Character(id: 2, name: "Nome Teste 2", image: "image2.png")
-        ];
 
-        when(repository.getCharacters())
-            .thenAnswer((_) async => Right(characters));
+  test(
+    'should get the list of characters',
+    () async {
+      final characters = [
+        Character(id: 1, name: "Nome Teste", image: "image.png"),
+        Character(id: 2, name: "Nome Teste 2", image: "image2.png")
+      ];
 
-        final result = await useCase();
+      when(repository.getCharacters())
+          .thenAnswer((_) async => Right(characters));
 
-        expect(result.isRight(), true);
-        expect(result, Right(characters));
-        expect(result.getOrElse(() => []), characters);
-      },
-    );
-  });
+      final result = await useCase();
+
+      expect(result.isRight(), true);
+      expect(result, Right(characters));
+      expect(result.getOrElse(() => []), characters);
+    },
+  );
 }
