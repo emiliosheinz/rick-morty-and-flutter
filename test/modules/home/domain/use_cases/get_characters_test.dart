@@ -28,7 +28,7 @@ void main() {
       when(repository.getCharacters())
           .thenAnswer((_) async => Right(tCharacters));
 
-      final result = await useCase.execute();
+      final result = await useCase();
 
       expect(result.isRight(), true);
       expect(result, Right(tCharacters));
