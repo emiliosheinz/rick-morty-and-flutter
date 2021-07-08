@@ -12,27 +12,28 @@ import 'get_characters_test.mocks.dart';
 void main() {
   late MockCharacterRepository repository;
   late GetCharacters useCase;
-
   setUp(() {
     repository = MockCharacterRepository();
     useCase = GetCharacters(repository);
   });
+  group('GetCharacters', () {
+    test(
+      'should get the list of characters',
+      () async {
+        final characters = [
+          Character(id: 1, name: "Nome Teste", image: "image.png"),
+          Character(id: 2, name: "Nome Teste 2", image: "image2.png")
+        ];
 
-  final tCharacters = [
-    Character(id: 1, name: "Nome Teste", image: "image.png"),
-    Character(id: 2, name: "Nome Teste 2", image: "image2.png")
-  ];
-  test(
-    'should get the list of characters',
-    () async {
-      when(repository.getCharacters())
-          .thenAnswer((_) async => Right(tCharacters));
+        when(repository.getCharacters())
+            .thenAnswer((_) async => Right(characters));
 
-      final result = await useCase();
+        final result = await useCase();
 
-      expect(result.isRight(), true);
-      expect(result, Right(tCharacters));
-      expect(result.getOrElse(() => []), tCharacters);
-    },
-  );
+        expect(result.isRight(), true);
+        expect(result, Right(characters));
+        expect(result.getOrElse(() => []), characters);
+      },
+    );
+  });
 }
