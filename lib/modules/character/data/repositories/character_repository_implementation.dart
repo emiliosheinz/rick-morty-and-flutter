@@ -1,3 +1,4 @@
+import 'package:rick_morty_and_flutter/core/error/exceptions.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/sources/character_remote_data_source.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/core/error/failures.dart';
@@ -10,8 +11,12 @@ class CharacterRepositoryImplementation implements CharacterRepository {
   CharacterRepositoryImplementation({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<Character>>> getCharacters() {
-    // TODO: implement getCharacters
-    throw UnimplementedError();
+  Future<Either<Failure, List<Character>>> getCharacters() async {
+    try {
+      final characters = await remoteDataSource.getCharacters();
+      return Right(characters);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
