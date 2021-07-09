@@ -10,4 +10,12 @@ class CharacterModel extends Character {
     required this.name,
     required this.image,
   }) : super(id: id, name: name, image: image);
+
+  factory CharacterModel.fromJson(Map<String, dynamic> json) {
+    return CharacterModel(
+      id: json['id'],
+      name: json['name'],
+      image: json['image'],
+    );
+  }
 }
