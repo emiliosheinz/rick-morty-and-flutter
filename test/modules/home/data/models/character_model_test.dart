@@ -27,4 +27,18 @@ void main() {
       expect(result, characterModel);
     });
   });
+
+  group("toJson", () {
+    test("should return a JSON map containing the proper data", () async {
+      final result = characterModel.toJson();
+
+      final expectedMap = {
+        "id": 1,
+        "name": "Teste Name",
+        "image": "image.png",
+      };
+
+      expect(result, expectedMap);
+    });
+  });
 }
