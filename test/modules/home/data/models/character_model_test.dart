@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import "package:flutter_test/flutter_test.dart";
 import 'package:rick_morty_and_flutter/modules/character/data/models/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
