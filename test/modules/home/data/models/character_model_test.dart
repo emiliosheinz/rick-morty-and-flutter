@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import "package:flutter_test/flutter_test.dart";
 import 'package:rick_morty_and_flutter/modules/character/data/models/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
+
+import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final characterModel = CharacterModel(
@@ -11,5 +15,16 @@ void main() {
 
   test("should be a subclass of Character entity", () async {
     expect(characterModel, isA<Character>());
+  });
+
+  group("fromJson", () {
+    test("should return a valid model", () async {
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture("character.json"));
+
+      final result = CharacterModel.fromJson(jsonMap);
+
+      expect(result, characterModel);
+    });
   });
 }
