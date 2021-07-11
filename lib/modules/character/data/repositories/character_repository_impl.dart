@@ -5,10 +5,10 @@ import 'package:rick_morty_and_flutter/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/repositories/character.dart';
 
-class CharacterRepositoryImplementation implements CharacterRepository {
+class CharacterRepositoryImpl implements CharacterRepository {
   final CharacterRemoteDataSource remoteDataSource;
 
-  CharacterRepositoryImplementation({required this.remoteDataSource});
+  CharacterRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<Either<Failure, List<Character>>> getCharacters() async {

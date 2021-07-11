@@ -4,21 +4,21 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:rick_morty_and_flutter/core/error/exceptions.dart';
 import 'package:rick_morty_and_flutter/core/error/failures.dart';
-import 'package:rick_morty_and_flutter/modules/character/data/repositories/character_repository_implementation.dart';
+import 'package:rick_morty_and_flutter/modules/character/data/repositories/character_repository_impl.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/sources/character_remote_data_source.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 
-import 'character_repository_implementation_test.mocks.dart';
+import 'character_repository_impl_test.mocks.dart';
 
 @GenerateMocks([CharacterRemoteDataSource])
 void main() {
   late MockCharacterRemoteDataSource remoteDataSource;
-  late CharacterRepositoryImplementation repositoryImplementation;
+  late CharacterRepositoryImpl repositoryImpl;
 
   setUp(() {
     remoteDataSource = MockCharacterRemoteDataSource();
-    repositoryImplementation =
-        CharacterRepositoryImplementation(remoteDataSource: remoteDataSource);
+    repositoryImpl =
+        CharacterRepositoryImpl(remoteDataSource: remoteDataSource);
   });
 
   group('getCharacters', () {
@@ -32,7 +32,7 @@ void main() {
       when(remoteDataSource.getCharacters())
           .thenAnswer((_) async => characters);
 
-      final result = await repositoryImplementation.getCharacters();
+      final result = await repositoryImpl.getCharacters();
 
       expect(result.isRight(), true);
       expect(result, Right(characters));
@@ -45,7 +45,7 @@ void main() {
       when(remoteDataSource.getCharacters())
           .thenThrow(ServerException("Server exception"));
 
-      final result = await repositoryImplementation.getCharacters();
+      final result = await repositoryImpl.getCharacters();
 
       verify(remoteDataSource.getCharacters());
       expect(result.isLeft(), true);
