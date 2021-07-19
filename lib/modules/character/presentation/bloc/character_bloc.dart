@@ -20,11 +20,14 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     CharacterEvent event,
   ) async* {
     if (event is GetCharactersEvent) {
+      yield Loading();
       final getCharactersEither = await getCharacters();
 
       yield* getCharactersEither.fold((failure) async* {
         yield Error(message: SERVER_FAILURE_MESSAGE);
-      }, (r) => throw UnimplementedError());
+      }, (characters) async* {
+        yield Loaded(characters: characters);
+      });
     }
   }
 }

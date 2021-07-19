@@ -29,7 +29,7 @@ main() {
       Character(id: 2, name: "Nome Teste 2", image: "image2.png")
     ];
 
-    test('should call the getCharacters use case', () async {
+    test('should get data from getCharacters use case', () async {
       when(getCharacters()).thenAnswer((_) async => Right(characters));
 
       bloc.add(GetCharactersEvent());
@@ -38,10 +38,23 @@ main() {
       verify(getCharacters());
     });
 
-    test('should emit [Error] state when the server fails', () async {
+    test('should emit [Loading, Error] state when the server fails', () async {
       when(getCharacters()).thenAnswer((_) async => Left(ServerFailure()));
 
-      final events = [Error(message: SERVER_FAILURE_MESSAGE)];
+      final events = [Loading(), Error(message: SERVER_FAILURE_MESSAGE)];
+      expectLater(
+        bloc.stream,
+        emitsInOrder(events),
+      );
+
+      bloc.add(GetCharactersEvent());
+    });
+
+    test('should emit [Loading, Loaded] state when data is gotten successfully',
+        () async {
+      when(getCharacters()).thenAnswer((_) async => Right(characters));
+
+      final events = [Loading(), Loaded(characters: characters)];
       expectLater(
         bloc.stream,
         emitsInOrder(events),
