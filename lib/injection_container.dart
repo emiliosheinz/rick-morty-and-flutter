@@ -6,28 +6,28 @@ import 'package:rick_morty_and_flutter/modules/character/domain/repositories/cha
 import 'package:rick_morty_and_flutter/modules/character/domain/use_cases/get_characters.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/bloc/character_bloc.dart';
 
-// Serivce Locator
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 void init() {
   //! Features
   // Bloc
-  sl.registerFactory(() => CharacterBloc(getCharacters: sl()));
+  serviceLocator
+      .registerFactory(() => CharacterBloc(getCharacters: serviceLocator()));
 
   // Use Cases
-  sl.registerLazySingleton(() => GetCharacters(sl()));
+  serviceLocator.registerLazySingleton(() => GetCharacters(serviceLocator()));
 
   // Repositories
-  sl.registerLazySingleton<CharacterRepository>(
-    () => CharacterRepositoryImpl(remoteDataSource: sl()),
+  serviceLocator.registerLazySingleton<CharacterRepository>(
+    () => CharacterRepositoryImpl(remoteDataSource: serviceLocator()),
   );
 
   // Data Sources
-  sl.registerLazySingleton<CharacterRemoteDataSource>(
-    () => CharacterRemoteDataSourceImpl(client: sl()),
+  serviceLocator.registerLazySingleton<CharacterRemoteDataSource>(
+    () => CharacterRemoteDataSourceImpl(client: serviceLocator()),
   );
   //! Core
 
   //! External
-  sl.registerFactory(() => http.Client());
+  serviceLocator.registerFactory(() => http.Client());
 }
