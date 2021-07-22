@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rick_morty_and_flutter/core/error/failures.dart';
+import 'package:rick_morty_and_flutter/shared/error/failures.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/use_cases/get_characters.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/bloc/character_bloc.dart';

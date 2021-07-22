@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
-import 'package:rick_morty_and_flutter/core/error/exceptions.dart';
+import 'package:rick_morty_and_flutter/shared/error/exceptions.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/models/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/sources/character_remote_data_source.dart';
 
