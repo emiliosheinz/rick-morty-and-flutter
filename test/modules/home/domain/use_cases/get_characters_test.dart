@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/repositories/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/use_cases/get_characters.dart';
+import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 
 import 'get_characters_test.mocks.dart';
 
@@ -21,8 +22,18 @@ void main() {
     'should get the list of characters',
     () async {
       final characters = [
-        Character(id: 1, name: "Nome Teste", image: "image.png"),
-        Character(id: 2, name: "Nome Teste 2", image: "image2.png")
+        Character(
+          id: 1,
+          name: "Nome Teste",
+          image: "image.png",
+          status: CharacterStatus.alive,
+        ),
+        Character(
+          id: 2,
+          name: "Nome Teste 2",
+          image: "image2.png",
+          status: CharacterStatus.alive,
+        )
       ];
 
       when(repository.getCharacters())

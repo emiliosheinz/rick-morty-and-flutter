@@ -2,11 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
-import 'package:rick_morty_and_flutter/shared/error/exceptions.dart';
-import 'package:rick_morty_and_flutter/shared/error/failures.dart';
+import 'package:rick_morty_and_flutter/core/error/exceptions.dart';
+import 'package:rick_morty_and_flutter/core/error/failures.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/repositories/character_repository_impl.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/sources/character_remote_data_source.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
+import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 
 import 'character_repository_impl_test.mocks.dart';
 
@@ -23,7 +24,12 @@ void main() {
 
   group('getCharacters', () {
     final characters = [
-      Character(id: 1, name: "Test Name", image: "image.png")
+      Character(
+        id: 1,
+        name: "Test Name",
+        image: "image.png",
+        status: CharacterStatus.alive,
+      )
     ];
 
     test(

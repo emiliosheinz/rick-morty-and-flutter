@@ -2,10 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rick_morty_and_flutter/shared/error/failures.dart';
+import 'package:rick_morty_and_flutter/core/error/failures.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/use_cases/get_characters.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/bloc/character_bloc.dart';
+import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 
 import 'character_bloc_test.mocks.dart';
 
@@ -25,8 +26,18 @@ main() {
 
   group('getCharacters', () {
     final characters = [
-      Character(id: 1, name: "Nome Teste", image: "image.png"),
-      Character(id: 2, name: "Nome Teste 2", image: "image2.png")
+      Character(
+        id: 1,
+        name: "Nome Teste",
+        image: "image.png",
+        status: CharacterStatus.alive,
+      ),
+      Character(
+        id: 2,
+        name: "Nome Teste 2",
+        image: "image2.png",
+        status: CharacterStatus.alive,
+      )
     ];
 
     test('should get data from getCharacters use case', () async {

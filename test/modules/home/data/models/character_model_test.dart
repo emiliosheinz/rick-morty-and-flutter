@@ -2,6 +2,7 @@ import 'dart:convert';
 import "package:flutter_test/flutter_test.dart";
 import 'package:rick_morty_and_flutter/modules/character/data/models/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
+import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -10,6 +11,7 @@ void main() {
     id: 1,
     name: "Teste Name",
     image: "image.png",
+    status: CharacterStatus.alive,
   );
 
   test("should be a subclass of Character entity", () async {
@@ -35,6 +37,7 @@ void main() {
         "id": 1,
         "name": "Teste Name",
         "image": "image.png",
+        "status": "Alive"
       };
 
       expect(result, expectedMap);

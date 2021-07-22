@@ -5,12 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "rick-morty-and-flutter",
+      "name": "Run app",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "rick-morty-and-flutter (profile mode)",
+      "name": "Run app on profile mode",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
