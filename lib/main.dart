@@ -14,10 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Characters',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(),
       home: BlocProvider(
         create: (_) => serviceLocator<CharacterBloc>(),
         child: CharactersPage(),
