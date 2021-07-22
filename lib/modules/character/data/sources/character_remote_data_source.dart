@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:rick_morty_and_flutter/core/error/exceptions.dart';
+import 'package:rick_morty_and_flutter/shared/error/exceptions.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/models/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 
