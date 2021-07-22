@@ -3,10 +3,12 @@ import 'package:rick_morty_and_flutter/modules/character/domain/entities/charact
 import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 
 CharacterStatus _getStatusFromString(String statusFromJson) {
-  return EnumUtils.fromString(
+  final parsedStatus = EnumUtils.fromString(
     CharacterStatus.values,
     statusFromJson.toString().toLowerCase(),
   );
+
+  return parsedStatus ?? CharacterStatus.unknow;
 }
 
 class CharacterModel extends Character {
