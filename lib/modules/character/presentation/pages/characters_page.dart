@@ -21,28 +21,24 @@ class _CharactersPageState extends State<CharactersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Characters"),
-      ),
       body: Center(
         child: BlocBuilder<CharacterBloc, CharacterState>(
           builder: (context, state) {
-            if (state is Loading) {
-              return Text("Loading");
+            if (state is Empty) {
+              return Text("Nothing to show here");
             }
 
             if (state is Error) {
               return Text("Error loading data");
             }
 
-            if (state is Loaded) {
-              return Container(
-                color: AppColors.background,
-                child: CharactersList(characters: state.characters),
-              );
-            }
-
-            return Text("Nothing to show here");
+            return Container(
+              color: AppColors.background,
+              child: CharactersList(
+                characters: state is Loaded ? state.characters : [],
+                isLoading: state is Loading,
+              ),
+            );
           },
         ),
       ),

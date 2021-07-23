@@ -4,27 +4,19 @@ enum CharacterStatus { alive, dead, unknow }
 
 extension CharacterStatusExtension on CharacterStatus {
   // TODO emilioheinz: use themed colors
-  Color get color {
-    switch (this) {
-      case CharacterStatus.alive:
-        return Colors.green;
-      case CharacterStatus.dead:
-        return Colors.red;
-      case CharacterStatus.unknow:
-      default:
-        return Colors.grey;
-    }
-  }
+  static const _colors = {
+    CharacterStatus.alive: Colors.green,
+    CharacterStatus.dead: Colors.red,
+    CharacterStatus.unknow: Colors.grey,
+  };
 
-  String get name {
-    switch (this) {
-      case CharacterStatus.alive:
-        return "Alive";
-      case CharacterStatus.dead:
-        return "Dead";
-      case CharacterStatus.unknow:
-      default:
-        return "Unknow";
-    }
-  }
+  static const _names = {
+    CharacterStatus.alive: 'Alive',
+    CharacterStatus.dead: 'Dead',
+    CharacterStatus.unknow: 'Unknow',
+  };
+
+  Color get color => _colors[this] ?? _colors[CharacterStatus.unknow]!;
+
+  String get name => _names[this] ?? _names[CharacterStatus.unknow]!;
 }
