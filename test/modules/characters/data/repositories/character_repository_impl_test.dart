@@ -28,6 +28,7 @@ void main() {
         id: 1,
         name: "Test Name",
         image: "image.png",
+        species: "Human",
         status: CharacterStatus.alive,
       )
     ];

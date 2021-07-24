@@ -26,12 +26,14 @@ void main() {
           id: 1,
           name: "Nome Teste",
           image: "image.png",
+          species: "Human",
           status: CharacterStatus.alive,
         ),
         Character(
           id: 2,
           name: "Nome Teste 2",
           image: "image2.png",
+          species: "Human",
           status: CharacterStatus.alive,
         )
       ];

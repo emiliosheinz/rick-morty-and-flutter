@@ -11,6 +11,7 @@ void main() {
     id: 1,
     name: "Teste Name",
     image: "image.png",
+    species: "Human",
     status: CharacterStatus.alive,
   );
 
@@ -37,7 +38,8 @@ void main() {
         "id": 1,
         "name": "Teste Name",
         "image": "image.png",
-        "status": "Alive"
+        "status": "Alive",
+        "species": "Human"
       };
 
       expect(result, expectedMap);
