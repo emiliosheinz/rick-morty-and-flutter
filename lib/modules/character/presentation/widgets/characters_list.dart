@@ -4,6 +4,8 @@ import 'package:rick_morty_and_flutter/core/widgets/shimmer_provider.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/widgets/character_card.dart';
 
+const _LOADING_CARDS_TO_RENDER = 10;
+
 class CharactersList extends StatelessWidget {
   final List<Character> characters;
   final bool isLoading;
@@ -20,13 +22,13 @@ class CharactersList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
+          cacheExtent: double.maxFinite,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),
-          // TODO emilioheinz: remove magic number
-          itemCount: isLoading ? 10 : characters.length,
+          itemCount: isLoading ? _LOADING_CARDS_TO_RENDER : characters.length,
           itemBuilder: (ctx, index) {
             if (isLoading) {
               return ShimmerLoader(
