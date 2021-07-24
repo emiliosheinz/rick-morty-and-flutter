@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
+import 'package:rick_morty_and_flutter/core/widgets/fade_in.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
@@ -12,8 +14,9 @@ class CharacterCard extends StatelessWidget {
   }) : super(key: key);
 
   Widget buildCharacterImage() {
-    return Image.network(
-      character.image,
+    return FadeInImage.memoryNetwork(
+      placeholder: kTransparentImage,
+      image: character.image,
       height: double.infinity,
       width: double.infinity,
       fit: BoxFit.contain,
@@ -79,8 +82,8 @@ class CharacterCard extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         children: [
           buildCharacterImage(),
-          buildOverlayGradient(),
-          buildCharacterInfo(context),
+          FadeIn(child: buildOverlayGradient()),
+          FadeIn(child: buildCharacterInfo(context)),
         ],
       ),
     );
