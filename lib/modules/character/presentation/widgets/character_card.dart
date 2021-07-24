@@ -61,9 +61,8 @@ class CharacterCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 5),
-              // TODO emilioheinz: Use real data instead of mock
               Text(
-                '${character.status.name} - Human',
+                '${character.status.name} - ${character.species}',
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ],

@@ -15,17 +15,20 @@ class CharacterModel extends Character {
   final int id;
   final String name;
   final String image;
+  final String species;
   final CharacterStatus status;
 
   CharacterModel({
     required this.id,
     required this.name,
     required this.image,
+    required this.species,
     required this.status,
   }) : super(
           id: id,
           name: name,
           image: image,
+          species: species,
           status: status,
         );
 
@@ -34,6 +37,7 @@ class CharacterModel extends Character {
       id: json['id'],
       name: json['name'],
       image: json['image'],
+      species: json['species'],
       status: _getStatusFromString(json['status']),
     );
   }
@@ -43,6 +47,7 @@ class CharacterModel extends Character {
       "id": id,
       "name": name,
       "image": image,
+      "species": species,
       "status": status.name,
     };
   }
