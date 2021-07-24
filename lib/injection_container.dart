@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:rick_morty_and_flutter/core/services/navigation.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/repositories/character_repository_impl.dart';
 import 'package:rick_morty_and_flutter/modules/character/data/sources/character_remote_data_source.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/repositories/character.dart';
@@ -8,7 +9,7 @@ import 'package:rick_morty_and_flutter/modules/character/presentation/bloc/chara
 
 final serviceLocator = GetIt.instance;
 
-void init() {
+void inject() {
   //! Features
   // Bloc
   serviceLocator
@@ -27,6 +28,8 @@ void init() {
     () => CharacterRemoteDataSourceImpl(client: serviceLocator()),
   );
   //! Core
+  //Services
+  serviceLocator.registerLazySingleton(() => NavigationService());
 
   //! External
   serviceLocator.registerFactory(() => http.Client());

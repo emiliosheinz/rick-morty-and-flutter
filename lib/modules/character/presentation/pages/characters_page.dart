@@ -5,6 +5,8 @@ import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/widgets/characters_list.dart';
 
 class CharactersPage extends StatefulWidget {
+  static final String routeName = '/characters';
+
   const CharactersPage({Key? key}) : super(key: key);
 
   @override
