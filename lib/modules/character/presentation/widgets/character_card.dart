@@ -29,8 +29,8 @@ class CharacterCard extends StatelessWidget {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [
-              Colors.black,
-              Colors.transparent,
+              AppColors.characterCardGradientStart,
+              AppColors.characterCardGradientEnd,
             ],
           ),
         ),
@@ -38,7 +38,7 @@ class CharacterCard extends StatelessWidget {
     );
   }
 
-  Widget buildCharacterInfo() {
+  Widget buildCharacterInfo(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -47,11 +47,8 @@ class CharacterCard extends StatelessWidget {
         children: [
           Text(
             character.name,
-            style: TextStyle(
-              color: AppColors.text,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+            style: Theme.of(context).textTheme.headline6,
+            maxLines: 1,
           ),
           Row(
             children: [
@@ -59,14 +56,15 @@ class CharacterCard extends StatelessWidget {
                 width: 10,
                 height: 10,
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: character.status.color,
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
               SizedBox(width: 5),
+              // TODO emilioheinz: Use real data instead of mock
               Text(
                 '${character.status.name} - Human',
-                style: TextStyle(color: AppColors.text),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ],
           ),
@@ -78,18 +76,13 @@ class CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white60,
-      clipBehavior: Clip.hardEdge,
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
           buildCharacterImage(),
           buildOverlayGradient(),
-          buildCharacterInfo(),
+          buildCharacterInfo(context),
         ],
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

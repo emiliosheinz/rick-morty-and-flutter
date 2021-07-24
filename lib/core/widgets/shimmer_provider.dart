@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
 
 class _SlidingGradientTransform extends GradientTransform {
   const _SlidingGradientTransform({
@@ -35,15 +36,11 @@ class ShimmerProviderState extends State<ShimmerProvider>
 
   final _shimmerGradient = LinearGradient(
     colors: [
-      Color(0xFFEBEBF4),
-      Color(0xFFF4F4F4),
-      Color(0xFFEBEBF4),
+      AppColors.shimmerBackground,
+      AppColors.shimmerGradient,
+      AppColors.shimmerBackground
     ],
-    stops: [
-      0.1,
-      0.3,
-      0.4,
-    ],
+    stops: [0.1, 0.3, 0.5],
     begin: Alignment(-1.0, -0.3),
     end: Alignment(1.0, 0.3),
     tileMode: TileMode.clamp,
@@ -79,7 +76,7 @@ class ShimmerProviderState extends State<ShimmerProvider>
 
     _shimmerController = AnimationController.unbounded(vsync: this)
       ..repeat(
-        min: -0.5,
+        min: -1.5,
         max: 1.5,
         period: const Duration(milliseconds: 1000),
       );

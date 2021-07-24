@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
 
 enum CharacterStatus { alive, dead, unknow }
 
 extension CharacterStatusExtension on CharacterStatus {
-  // TODO emilioheinz: use themed colors
-  static const _colors = {
-    CharacterStatus.alive: Colors.green,
-    CharacterStatus.dead: Colors.red,
-    CharacterStatus.unknow: Colors.grey,
+  static final _colors = {
+    CharacterStatus.alive: AppColors.aliveCharacter,
+    CharacterStatus.dead: AppColors.deadCharacter,
+    CharacterStatus.unknow: AppColors.unknowCharacter,
   };
 
-  static const _names = {
+  static final _names = {
     CharacterStatus.alive: 'Alive',
     CharacterStatus.dead: 'Dead',
     CharacterStatus.unknow: 'Unknow',

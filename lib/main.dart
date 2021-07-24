@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_morty_and_flutter/core/themes/app_themes.dart';
 import 'package:rick_morty_and_flutter/injection_container.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/pages/characters_page.dart';
-import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
 
 import 'modules/character/presentation/bloc/character_bloc.dart';
 
@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Characters',
-      theme: ThemeData(
-        primaryColor: AppColors.background,
-      ),
+      theme: AppThemes.primary,
       home: BlocProvider(
         create: (_) => serviceLocator<CharacterBloc>(),
         child: CharactersPage(),

@@ -21,6 +21,9 @@ class _CharactersPageState extends State<CharactersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Characters"),
+      ),
       body: Center(
         child: BlocBuilder<CharacterBloc, CharacterState>(
           builder: (context, state) {

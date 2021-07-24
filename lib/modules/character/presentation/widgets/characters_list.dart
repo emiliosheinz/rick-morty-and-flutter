@@ -25,17 +25,12 @@ class CharactersList extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),
+          // TODO emilioheinz: remove magic number
           itemCount: isLoading ? 10 : characters.length,
           itemBuilder: (ctx, index) {
             if (isLoading) {
               return ShimmerLoader(
-                child: Card(
-                  color: Colors.white60,
-                  clipBehavior: Clip.hardEdge,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                child: Card(),
               );
             }
 
