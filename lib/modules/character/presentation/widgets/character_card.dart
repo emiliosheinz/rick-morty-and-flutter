@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
+import 'package:rick_morty_and_flutter/core/services/navigation.dart';
 import 'package:rick_morty_and_flutter/core/widgets/fade_in.dart';
+import 'package:rick_morty_and_flutter/injection_container.dart';
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
+import 'package:rick_morty_and_flutter/modules/character/presentation/pages/character_details_page.dart';
 import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -19,7 +22,7 @@ class CharacterCard extends StatelessWidget {
       image: character.image,
       height: double.infinity,
       width: double.infinity,
-      fit: BoxFit.contain,
+      fit: BoxFit.cover,
     );
   }
 
@@ -82,7 +85,12 @@ class CharacterCard extends StatelessWidget {
         child: InkWell(
           highlightColor: AppColors.characterCardHighlight,
           splashColor: AppColors.characterCardSplash,
-          onTap: () {},
+          onTap: () {
+            serviceLocator<NavigationService>().navigateTo(
+              CharacterDetailsPage.routeName,
+              arguments: CharacterDetailsPageArguments(character: character),
+            );
+          },
         ),
       ),
     );
@@ -90,17 +98,15 @@ class CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Card(
-        child: Stack(
-          alignment: Alignment.bottomLeft,
-          children: [
-            buildCharacterImage(),
-            FadeIn(child: buildOverlayGradient()),
-            FadeIn(child: buildCharacterInfo(context)),
-            buildPressableArea()
-          ],
-        ),
+    return Card(
+      child: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [
+          buildCharacterImage(),
+          FadeIn(child: buildOverlayGradient()),
+          FadeIn(child: buildCharacterInfo(context)),
+          buildPressableArea()
+        ],
       ),
     );
   }
