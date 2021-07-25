@@ -10,6 +10,8 @@ class AppColors {
   static final shimmerGradient = Color(0xFF404354);
   static final characterCardGradientStart = Colors.black;
   static final characterCardGradientEnd = Colors.transparent;
+  static final characterDetailsGradientStart = Colors.black;
+  static final characterDetailsGradientEnd = Colors.transparent;
   static final aliveCharacter = Color(0xFF00CE46);
   static final deadCharacter = Colors.red;
   static final unknowCharacter = Colors.grey;

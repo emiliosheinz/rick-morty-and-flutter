@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rick_morty_and_flutter/core/colors/app_colors.dart';
 import 'package:rick_morty_and_flutter/core/services/navigation.dart';
 import 'package:rick_morty_and_flutter/injection_container.dart';
-
 import 'package:rick_morty_and_flutter/modules/character/domain/entities/character.dart';
 import 'package:rick_morty_and_flutter/modules/character/shared/enums/character_status.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -26,29 +25,38 @@ class CharacterDetailsPage extends StatelessWidget {
     required CharacterStatus characterStatus,
     required String characterSpecies,
   }) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(characterName),
-        Row(
-          children: [
-            Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: characterStatus.color,
-                borderRadius: BorderRadius.circular(5),
-              ),
+    return Padding(
+      padding: EdgeInsets.only(right: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            characterName,
+            textAlign: TextAlign.right,
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: characterStatus.color,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  '${characterStatus.name} - $characterSpecies',
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+              ],
             ),
-            SizedBox(width: 5),
-            Text(
-              '${characterStatus.name} - $characterSpecies',
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -71,8 +79,8 @@ class CharacterDetailsPage extends StatelessWidget {
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-                  AppColors.characterCardGradientStart,
-                  AppColors.characterCardGradientEnd,
+                  AppColors.characterDetailsGradientStart,
+                  AppColors.characterDetailsGradientEnd,
                 ],
               ),
             ),
@@ -90,10 +98,12 @@ class CharacterDetailsPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: screenHeight * 0.5,
+            elevation: 0,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: _buildSliverAppBarTitle(
@@ -102,11 +112,12 @@ class CharacterDetailsPage extends StatelessWidget {
                 characterStatus: character.status,
                 characterSpecies: character.species,
               ),
-              centerTitle: false,
-              titlePadding: EdgeInsets.fromLTRB(25, 0, 25, 20),
-              background: _buildSliverAppBarBackground(image: character.image),
+              background: _buildSliverAppBarBackground(
+                image: character.image,
+              ),
             ),
           ),
+          SliverList(delegate: SliverChildListDelegate([]))
         ],
       ),
     );
