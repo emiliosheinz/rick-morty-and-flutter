@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_morty_and_flutter/core/services/navigation.dart';
 import 'package:rick_morty_and_flutter/core/themes/app_themes.dart';
 import 'package:rick_morty_and_flutter/injection_container.dart';
+import 'package:rick_morty_and_flutter/modules/character/presentation/pages/character_details_page.dart';
 import 'package:rick_morty_and_flutter/modules/character/presentation/pages/characters_page.dart';
 
 import 'modules/character/presentation/bloc/character_bloc.dart';
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
         navigatorKey: serviceLocator<NavigationService>().navigatorKey,
         initialRoute: CharactersPage.routeName,
         routes: {
-          CharactersPage.routeName: (context) => CharactersPage(),
+          CharactersPage.routeName: (context) => const CharactersPage(),
+          CharacterDetailsPage.routeName: (context) =>
+              const CharacterDetailsPage()
         },
       ),
     );
