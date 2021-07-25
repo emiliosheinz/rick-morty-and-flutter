@@ -13,4 +13,6 @@ class AppColors {
   static final aliveCharacter = Color(0xFF00CE46);
   static final deadCharacter = Colors.red;
   static final unknowCharacter = Colors.grey;
+  static final characterCardHighlight = Colors.transparent;
+  static final characterCardSplash = Color(0xFF00D2FF).withOpacity(0.35);
 }

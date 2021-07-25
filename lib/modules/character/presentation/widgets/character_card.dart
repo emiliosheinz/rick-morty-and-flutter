@@ -75,16 +75,32 @@ class CharacterCard extends StatelessWidget {
     );
   }
 
+  Widget buildPressableArea() {
+    return Positioned.fill(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          highlightColor: AppColors.characterCardHighlight,
+          splashColor: AppColors.characterCardSplash,
+          onTap: () {},
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          buildCharacterImage(),
-          FadeIn(child: buildOverlayGradient()),
-          FadeIn(child: buildCharacterInfo(context)),
-        ],
+    return InkWell(
+      child: Card(
+        child: Stack(
+          alignment: Alignment.bottomLeft,
+          children: [
+            buildCharacterImage(),
+            FadeIn(child: buildOverlayGradient()),
+            FadeIn(child: buildCharacterInfo(context)),
+            buildPressableArea()
+          ],
+        ),
       ),
     );
   }
