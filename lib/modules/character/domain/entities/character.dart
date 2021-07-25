@@ -7,6 +7,9 @@ class Character extends Equatable {
   final String image;
   final String species;
   final CharacterStatus status;
+  final String? gender;
+  final String? origin;
+  final String? location;
 
   Character({
     required this.id,
@@ -14,7 +17,19 @@ class Character extends Equatable {
     required this.image,
     required this.species,
     required this.status,
+    this.gender,
+    this.origin,
+    this.location,
   });
 
-  List<Object> get props => [id, name, image, species, status];
+  List<Object?> get props => [
+        id,
+        name,
+        image,
+        species,
+        status,
+        gender,
+        origin,
+        location,
+      ];
 }

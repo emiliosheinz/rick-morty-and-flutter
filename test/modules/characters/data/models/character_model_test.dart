@@ -15,6 +15,17 @@ void main() {
     status: CharacterStatus.alive,
   );
 
+  final detailedCharacterModel = CharacterModel(
+    id: 1,
+    name: "Teste Name",
+    image: "image.png",
+    species: "Human",
+    status: CharacterStatus.alive,
+    gender: "Male",
+    location: "Earth (Replacement Dimension)",
+    origin: "Earth (C-137)",
+  );
+
   test("should be a subclass of Character entity", () async {
     expect(characterModel, isA<Character>());
   });
@@ -30,6 +41,17 @@ void main() {
     });
   });
 
+  group("detailedFromJson", () {
+    test("should return a valid model", () async {
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture("character.json"));
+
+      final result = CharacterModel.detailedFromJson(jsonMap);
+
+      expect(result, detailedCharacterModel);
+    });
+  });
+
   group("toJson", () {
     test("should return a JSON map containing the proper data", () async {
       final result = characterModel.toJson();
@@ -39,7 +61,10 @@ void main() {
         "name": "Teste Name",
         "image": "image.png",
         "status": "Alive",
-        "species": "Human"
+        "species": "Human",
+        "gender": null,
+        "origin": null,
+        "location": null
       };
 
       expect(result, expectedMap);

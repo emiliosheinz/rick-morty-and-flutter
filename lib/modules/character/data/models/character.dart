@@ -17,6 +17,9 @@ class CharacterModel extends Character {
   final String image;
   final String species;
   final CharacterStatus status;
+  final String? gender;
+  final String? origin;
+  final String? location;
 
   CharacterModel({
     required this.id,
@@ -24,12 +27,18 @@ class CharacterModel extends Character {
     required this.image,
     required this.species,
     required this.status,
+    this.gender,
+    this.origin,
+    this.location,
   }) : super(
           id: id,
           name: name,
           image: image,
           species: species,
           status: status,
+          gender: gender,
+          origin: origin,
+          location: location,
         );
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +51,19 @@ class CharacterModel extends Character {
     );
   }
 
+  factory CharacterModel.detailedFromJson(Map<String, dynamic> json) {
+    return CharacterModel(
+      id: json['id'],
+      name: json['name'],
+      image: json['image'],
+      species: json['species'],
+      status: _getStatusFromString(json['status']),
+      gender: json['gender'],
+      origin: json['origin']['name'],
+      location: json['location']['name'],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "id": id,
@@ -49,6 +71,9 @@ class CharacterModel extends Character {
       "image": image,
       "species": species,
       "status": status.name,
+      "gender": gender,
+      "origin": origin,
+      "location": location
     };
   }
 }
